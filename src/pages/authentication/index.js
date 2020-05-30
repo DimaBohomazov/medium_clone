@@ -1,7 +1,27 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
+import useFetch from "../../hooks/useFetch";
 
 const Authentication = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  // const [isSubmitting, setIsSubmitting] = useState(false)
+  const [{isLoading, response, error}, doFetch] = useFetch('/users/login')
+
+  console.log(response, isLoading, error)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    doFetch({
+      method: 'post',
+      data: {
+        user: {
+          email: 'qq@gmail.com',
+          password: '123'
+        }
+      }
+    })
+  }
   return (
     <div className='auth-page'>
       <div className="container page">
@@ -13,13 +33,15 @@ const Authentication = () => {
                 Need an account?
               </Link>
             </p>
-            <form>
+            <form onSubmit={handleSubmit}>
               <fieldset>
                 <fieldset className="form-group">
                   <input
                     className='form-control form-control-lg'
                     type="email"
                     placeholder='Email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="form-group">
@@ -27,11 +49,14 @@ const Authentication = () => {
                     className='form-control form-control-lg'
                     type="password"
                     placeholder='Password'
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
                   />
                 </fieldset>
                 <button
                   className="btn btn-lg btn-primary pull-xs-right"
                   type='submit'
+                  disabled={isLoading}
                 >
                   Sing In
                 </button>

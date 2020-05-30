@@ -6,14 +6,14 @@ import TopBar from './components/TopBar'
 
 const App = () => {
   return(
-    <React.StrictMode>
+    // <React.StrictMode>
       <BrowserRouter>
         <TopBar />
 
         <Routes />
 
       </BrowserRouter>
-    </React.StrictMode>
+    // </React.StrictMode>
   )
 }
 
