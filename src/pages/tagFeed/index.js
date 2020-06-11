@@ -10,18 +10,21 @@ import {getPaginator, limit} from '../../utils'
 import {stringify} from "query-string";
 
 
-const GlobalFeed = ({location, match}) => {
+const TagFeed = ({location, match}) => {
+  const tagName = match.params.slug
+  console.log(tagName)
   const {offset, currentPage} = getPaginator(location.search)
   const stringifiedParams = stringify({
     limit,
-    offset
+    offset,
+    tag: tagName
   })
   const apiUrl = `/articles?${stringifiedParams}`
   const [{response, isLoading, error}, doFetch] = useFetch(apiUrl)
 
   useEffect(() => {
     doFetch()
-  }, [doFetch, currentPage])
+  }, [doFetch, currentPage, tagName])
 
   return (
     <div className='home-page'>
@@ -35,6 +38,7 @@ const GlobalFeed = ({location, match}) => {
         <div className="row">
           <div className="col-md-9">
             <FeedToggler
+              tagName={tagName}
             />
             {isLoading && <Loading />}
             {error && <ErrorMessage />}
@@ -61,4 +65,4 @@ const GlobalFeed = ({location, match}) => {
   );
 };
 
-export default GlobalFeed;
+export default TagFeed;

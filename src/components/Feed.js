@@ -1,4 +1,5 @@
 import React from 'react';
+import TagList from './TagList'
 import {Link} from "react-router-dom";
 
 const Feed = ({articles}) => {
@@ -10,7 +11,10 @@ const Feed = ({articles}) => {
             <Link
               to={`/profiles/${article.author.username}`}
             >
-              <img src={article.author.image} alt="author"/>
+              <img
+                src={article.author.image ? article.author.image : "https://images-na.ssl-images-amazon.com/images/I/41jrhrQiEHL._SX331_BO1,204,                203,200_.jpg" }
+                alt="author"
+              />
             </Link>
             <div className="info">
               <Link
@@ -29,16 +33,9 @@ const Feed = ({articles}) => {
             <h1>{article.title}</h1>
             <p>{article.description}</p>
             <span>Read more...</span>
-            <ul className="tag-list">
-              {article.tagList.map(tag => (
-                <li
-                  className='tag-default tag-pill tag-outline'
-                  key={tag}
-                >
-                  {tag}
-                </li>
-              ))}
-            </ul>
+            <TagList
+              tags={article.tagList}
+            />
           </Link>
         </div>
       ))}

@@ -10,13 +10,13 @@ import {getPaginator, limit} from '../../utils'
 import {stringify} from "query-string";
 
 
-const GlobalFeed = ({location, match}) => {
+const YourFeed = ({location, match}) => {
   const {offset, currentPage} = getPaginator(location.search)
   const stringifiedParams = stringify({
     limit,
     offset
   })
-  const apiUrl = `/articles?${stringifiedParams}`
+  const apiUrl = `/articles/feed?${stringifiedParams}`
   const [{response, isLoading, error}, doFetch] = useFetch(apiUrl)
 
   useEffect(() => {
@@ -61,4 +61,4 @@ const GlobalFeed = ({location, match}) => {
   );
 };
 
-export default GlobalFeed;
+export default YourFeed;

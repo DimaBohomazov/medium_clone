@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 
 const PopularTags = () => {
   const [{response, isLoading, error}, doFetch] = useFetch('/tags')
-  console.log(response)
   useEffect(() => {
     doFetch()
   }, [doFetch])
