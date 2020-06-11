@@ -2,11 +2,14 @@ import React, {Fragment, useEffect} from 'react';
 import useFetch from "../../hooks/useFetch";
 import Feed from "../../components/Feed";
 import Pagination from "../../components/Pagination";
+import PopularTags from '../../components/PopularTags'
+import Loading from "../../components/Loading";
+import ErrorMessage from "../../components/ErrorMessage";
 import {getPaginator, limit} from '../../utils'
 import {stringify} from "query-string";
 
+
 const GlobalFeed = ({location, match}) => {
-  console.log(match)
   const {offset, currentPage} = getPaginator(location.search)
   const stringifiedParams = stringify({
     limit,
@@ -30,8 +33,8 @@ const GlobalFeed = ({location, match}) => {
       <div className="container page">
         <div className="row">
           <div className="col-md-9">
-            {isLoading && <div>Loading...</div>}
-            {error && <div>Some error happened</div>}
+            {isLoading && <Loading />}
+            {error && <ErrorMessage />}
             {!isLoading && response && (
               <Fragment>
                 <Feed
@@ -47,7 +50,7 @@ const GlobalFeed = ({location, match}) => {
             )}
           </div>
           <div className="col-md-3">
-            Popular tags
+            <PopularTags />
           </div>
         </div>
       </div>

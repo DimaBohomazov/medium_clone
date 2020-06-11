@@ -9,7 +9,6 @@ export default (url) => {
   const [error, setError] = useState(null)
   const [options, setOptions] = useState({})
   const [token] = useLocalStorage('token')
-  console.log('response', response)
 
   const doFetch = useCallback((options = {}) => {
     setOptions(options)
