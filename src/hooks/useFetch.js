@@ -28,7 +28,6 @@ export default (url) => {
     if (!isLoading) {
       return
     } else {
-      console.log('effect was triggered')
       axios(baseUrl + url, requestOptions)
         .then(res =>{
           setResponse(res.data)

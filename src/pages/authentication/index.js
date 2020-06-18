@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import BackendErrorMessages from './components/BackendErrorMessages'
+import BackendErrorMessages from '../../components/BackendErrorMessages'
 import {Link, Redirect} from 'react-router-dom'
 import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
