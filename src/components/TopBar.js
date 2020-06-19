@@ -38,13 +38,20 @@ const TopBar = () => {
                     New Post
                   </NavLink>
                 </li>
-              <li className='nav-item'>
-                <NavLink className='nav-link' to={`/profiles/${currentUserState.currentUser.username}`}>
-                  {currentUserState.currentUser.image && <img className='user-pic' src={currentUserState.currentUser.image} alt="profile"/>}
-                  &nbsp;
-                  {currentUserState.currentUser.username}
-                </NavLink>
-              </li>
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to='/settings'>
+                    <i className='ion-gear-a'></i>
+                    &nbsp;
+                    Settings
+                  </NavLink>
+                </li>
+                <li className='nav-item'>
+                  <NavLink className='nav-link' to={`/profiles/${currentUserState.currentUser.username}`}>
+                    {currentUserState.currentUser.image && <img className='user-pic' src={currentUserState.currentUser.image} alt="profile"/>}
+                    &nbsp;
+                    {currentUserState.currentUser.username}
+                  </NavLink>
+                </li>
               </Fragment>
 
           }
