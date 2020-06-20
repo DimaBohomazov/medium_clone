@@ -1,6 +1,7 @@
 import React from 'react';
 import TagList from './TagList'
 import {Link} from "react-router-dom";
+import AddToFavorites from "./AddToFavorites";
 
 const Feed = ({articles}) => {
   return (
@@ -12,7 +13,7 @@ const Feed = ({articles}) => {
               to={`/profiles/${article.author.username}`}
             >
               <img
-                src={article.author.image ? article.author.image : "https://images-na.ssl-images-amazon.com/images/I/41jrhrQiEHL._SX331_BO1,204,                203,200_.jpg" }
+                src={article.author.image ? article.author.image : "https://images-na.ssl-images-amazon.com/images/I/41jrhrQiEHL._SX331_BO1,204,203,200_.jpg" }
                 alt="author"
               />
             </Link>
@@ -24,6 +25,13 @@ const Feed = ({articles}) => {
                 {article.author.username}
               </Link>
               <span className='date'>{article.createdAt}</span>
+            </div>
+            <div className="pull-xs-right">
+              <AddToFavorites
+                isFavorited={article.favorited}
+                favoritesCount={article.favoritesCount}
+                articleSlug={article.slug}
+              />
             </div>
           </div>
           <Link
